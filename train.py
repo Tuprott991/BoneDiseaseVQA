@@ -90,13 +90,15 @@ if __name__ == "__main__":
             attention_mask = batch["attention_mask"].to(device)
             labels = batch["labels"].to(device)
             pixel_values = batch["pixel_values"].to(device)
+            qformer_input_ids = batch["qformer_input_ids"].to(device)
 
             with torch.amp.autocast('cuda'):
                 outputs = model(
                     input_ids=input_ids,
                     attention_mask=attention_mask,
                     labels=labels,
-                    pixel_values=pixel_values
+                    pixel_values=pixel_values,
+                    qformer_input_ids=qformer_input_ids
                 )
                 loss = outputs.loss
 
@@ -121,12 +123,14 @@ if __name__ == "__main__":
                 attention_mask = batch["attention_mask"].to(device)
                 labels = batch["labels"].to(device)
                 pixel_values = batch["pixel_values"].to(device)
+                qformer_input_ids = batch["qformer_input_ids"].to(device)
 
                 outputs = model(
                     input_ids=input_ids,
                     attention_mask=attention_mask,
                     labels=labels,
-                    pixel_values=pixel_values
+                    pixel_values=pixel_values,
+                    qformer_input_ids=qformer_input_ids
                 )
                 val_loss += outputs.loss.item()
 
@@ -135,7 +139,7 @@ if __name__ == "__main__":
                     attention_mask=attention_mask,
                     pixel_values=pixel_values,
                     max_new_tokens=64,
-
+                    qformer_input_ids = batch["qformer_input_ids"].to(device)
                 )
                 decoded_preds = tokenizer.batch_decode(generated, skip_special_tokens=True)
                 decoded_refs = tokenizer.batch_decode(labels, skip_special_tokens=True)

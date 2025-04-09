@@ -101,6 +101,11 @@ class BoneVQADataset(Dataset):
             return_tensors="pt",
         )
 
+        qformer_inputs = self.tokenizer(
+            input_text, padding="max_length", truncation=True,
+            max_length=self.max_length, return_tensors="pt"
+        )
+
         # Squeeze to remove batch dimension
         inputs = {k: v.squeeze(0) for k, v in inputs.items()}
         targets = {k: v.squeeze(0) for k, v in targets.items()}
@@ -110,6 +115,7 @@ class BoneVQADataset(Dataset):
             "input_ids": inputs["input_ids"],
             "attention_mask": inputs["attention_mask"],
             "labels": targets["input_ids"],
+            "qformer_input_ids": qformer_inputs["input_ids"].squeeze(0),
         }
     
 
