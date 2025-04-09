@@ -2,7 +2,7 @@ import torch
 from torchvision import transforms
 from transformers import InstructBlipProcessor, InstructBlipForConditionalGeneration
 
-def get_model_(model_name="Salesforce/instructblip-vicuna-7b"):
+def get_model_(model_name="Salesforce/instructblip-flan-t5-xl"):
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
