@@ -63,11 +63,10 @@ class BoneVQADataset(Dataset):
 
         # Anwser for the model
         input_text = f"Câu hỏi: {input_questions}"
-        print(input_text)
+        # print(input_text)
         # # Load and transform image
-        # image = Image.open(image_path).convert("RGB")
-        # image = self.image_transform(image)     
-        image = None
+        image = Image.open(image_path).convert("RGB")
+        image = self.image_transform(image)     
 
         # Output
         answer = f"Chẩn đoán: {diagnose} [SEP] Tình trạng: {condition}"
