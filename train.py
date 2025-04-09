@@ -29,7 +29,8 @@ if __name__ == "__main__":
     data_file = 'dataset/cleaned_output_bonedata.json'
     csv_file = 'dataset/question_bonedata.csv'
 
-    model, tokenizer, image_transform, device = get_model_()
+    model, processor, image_transform, device = get_model_()
+    tokenizer = processor.tokenizer
 
     # 🧠 Apply LoRA
     lora_config = LoraConfig(
@@ -38,7 +39,7 @@ if __name__ == "__main__":
         target_modules=["q_proj", "v_proj"],
         lora_dropout=0.1,
         bias="none",    
-        task_type=TaskType.CAUSAL_LM  # Hoặc TaskType.SEQ_2_SEQ_LM tùy mô hình
+        task_type=TaskType.SEQ_2_SEQ_LM  # Hoặc TaskType.SEQ_2_SEQ_LM tùy mô hình
     )
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
@@ -168,3 +169,4 @@ if __name__ == "__main__":
                 break
 
         model.train()
+        torch.cuda.empty_cache()
