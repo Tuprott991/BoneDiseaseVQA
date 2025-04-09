@@ -5,6 +5,9 @@ import torchvision.transforms as transforms
 import csv
 import random
 from transformers import AutoTokenizer
+import os
+
+BASE_IMAGE_PATH = "/kaggle/input/bonevqa/DemoBoneData"
 
 
 class BoneVQADataset(Dataset):
@@ -48,7 +51,7 @@ class BoneVQADataset(Dataset):
     def __getitem__(self, idx):
         # Load sample
         sample = self.samples[idx]
-        image_path = "/dataset/DemoBoneData/" + sample["image_url"]
+        image_path = os.path.join(BASE_IMAGE_PATH, sample["image_url"])
         # clinical_text = sample["clinical_text"]
 
         selected_questions = random.sample(self.questions, self.num_questions)
@@ -116,8 +119,8 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained("Salesforce/instructblip-vicuna-7b")   
 
     dataset = BoneVQADataset(
-        csv_file='dataset/question_bonedata.csv',
-        data_file='dataset/cleaned_output_bonedata.json',
+        csv_file='/dataset/question_bonedata.csv',
+        data_file='/dataset/cleaned_output_bonedata.json',
         tokenizer=tokenizer,  # Replace with your tokenizer
         image_transform=transforms.Compose([
             transforms.Resize((224, 224)),
