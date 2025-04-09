@@ -19,7 +19,7 @@ def get_model_(model_name="Salesforce/instructblip-flan-t5-xl"):
         device_map="auto",
         quantization_config=quantization_config
     )
-    model = model.to(device)
+    # model = model.to(device)
 
     # Define image transformation (optional if you're using the processor)
     image_transform = transforms.Compose([
