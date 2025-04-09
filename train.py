@@ -54,7 +54,7 @@ if __name__ == "__main__":
         num_questions=1
     )
 
-    train_size = int(0.9 * len(dataset))
+    train_size = int(0.7 * len(dataset))
     val_size = len(dataset) - train_size
     train_dataset, val_dataset = torch.utils.data.random_split(dataset, [train_size, val_size])
 
