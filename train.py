@@ -33,16 +33,16 @@ if __name__ == "__main__":
     tokenizer = processor.tokenizer
 
     # 🧠 Apply LoRA
-    lora_config = LoraConfig(
-        r=8,
-        lora_alpha=16,
-        target_modules=['q', 'v'],
-        lora_dropout=0.1,
-        bias="none",    
-        task_type=TaskType.SEQ_2_SEQ_LM  # Hoặc TaskType.SEQ_2_SEQ_LM tùy mô hình
-    )
-    model = get_peft_model(model, lora_config)
-    model.print_trainable_parameters()
+    # lora_config = LoraConfig(
+    #     r=8,
+    #     lora_alpha=16,
+    #     target_modules=['q', 'v'],
+    #     lora_dropout=0.1,
+    #     bias="none",    
+    #     task_type=TaskType.SEQ_2_SEQ_LM  # Hoặc TaskType.SEQ_2_SEQ_LM tùy mô hình
+    # )
+    # model = get_peft_model(model, lora_config)
+    # model.print_trainable_parameters()
 
     # Dataset & Dataloader
     dataset = BoneVQADataset(
