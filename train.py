@@ -36,7 +36,7 @@ if __name__ == "__main__":
     lora_config = LoraConfig(
         r=8,
         lora_alpha=16,
-        target_modules=["q_proj", "v_proj"],
+        target_modules=['SelfAttention.q', 'SelfAttention.v'],
         lora_dropout=0.1,
         bias="none",    
         task_type=TaskType.SEQ_2_SEQ_LM  # Hoặc TaskType.SEQ_2_SEQ_LM tùy mô hình
