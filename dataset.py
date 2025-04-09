@@ -36,9 +36,9 @@ class BoneVQADataset(Dataset):
                 self.questions.append(row['\ufeffQuestion'])
 
         # Print all questions
-        print("All questions:")
-        for i, question in enumerate(self.questions):
-            print(f"Q{i+1}: {question}")
+        # print("All questions:")
+        # for i, question in enumerate(self.questions):
+        #     print(f"Q{i+1}: {question}")
         
         self.tokenizer = tokenizer
         self.image_transform = image_transform
@@ -78,11 +78,11 @@ class BoneVQADataset(Dataset):
         # You can use special tokens or delimiters to separate them.
 
         # Print a sample for debugging
-        print(f"Sample {idx}:")
-        print(f"Image path: {image_path}")
-        print(f"Input text: {input_text}")
-        print(f"Answer: {answer}")
-        print(f"Condition: {condition}")
+        # print(f"Sample {idx}:")
+        # print(f"Image path: {image_path}")
+        # print(f"Input text: {input_text}")
+        # print(f"Answer: {answer}")
+        # print(f"Condition: {condition}")
         
 
         # Tokenize input text and target answer
